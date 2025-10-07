@@ -1,0 +1,23 @@
+Given the head of a linked list, remove the nth node from the end of the list and return its head.
+Input: head = [1,2,3,4,5], n = 2
+Output: [1,2,3,5]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+wwe count the length and then we find ptr and then we loop ptr times
+
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        length = 0
+        temp = head
+        while temp:
+            length += 1
+            temp = temp.next
+        if length == 1:
+            return head.next
+        if length == n:
+            return head.next
+        ptr = length - n - 1
+        cur = head
+        for _ in range(ptr):
+            cur = cur.next
+        cur.next = cur.next.next
+        return head
