@@ -1,0 +1,25 @@
+Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+Input: head = [1,2,2,1]
+Output: true
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+we solve this by implementing fast and slow pointers,after implementing,we get middle value that is slow,from slow we do reverse ,and then we compare from head and reversed slow,if same then true else false.
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        slow, fast, prev = head, head, None
+        while fast and fast.next:
+            slow=slow.next
+            fast=fast.next.next
+        prev=None
+        while slow:
+            nxt=slow.next
+            slow.next=prev
+            prev=slow
+            slow=nxt
+        fast=head
+        slow=prev
+        while slow:
+            if fast.val != slow.val: 
+                return False
+            fast=fast.next
+            slow=slow.next
+        return True
