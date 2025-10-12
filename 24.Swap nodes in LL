@@ -1,0 +1,22 @@
+Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)
+Input: head = [1,2,3,4]
+Output: [2,1,4,3]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+solve this easily just by using a dummy node(0) to keep track of head or previous node after swapping two nodes
+if not head or head.next==None:
+            return head
+        dummy=ListNode(0)
+        dummy.next=head
+        prev=dummy
+        temp=head
+        while temp and temp.next:
+            first=temp
+            second=temp.next
+
+            first.next=second.next
+            second.next=first
+            prev.next=second
+
+            temp=first.next
+            prev=first
+        return dummy.next
